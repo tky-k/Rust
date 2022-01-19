@@ -7,6 +7,21 @@ struct User {
 
 struct Color(i32,i32,i32);
 struct Point(i32,i32,i32);
+
+#[derive(Debug)]
+struct Rectangle {
+    width: i32,
+    height: i32,
+}
+
+impl Rectangle {
+    fn area(&self) -> i32 {
+        self.width * self.height
+    }
+    fn can_hold(&self, r: &Rectangle) -> bool {
+         self.area() >= r.area()
+    }
+}
 fn main() {
     println!("Hello, world!");
     let i = 32;
@@ -33,6 +48,18 @@ fn main() {
     let c = Color(1,2,3);
     param_Color(c);
 
+    let rect = Rectangle {
+        width: 30,
+        height:50
+    };
+    println!("Rectangle value is {:#?}", rect);
+
+    println!("Rectangle area is {}", rect.area());
+    let rect2 = Rectangle{width:10, height:60};
+    let rect3 = Rectangle{width:25, height:70};
+
+    println!("is rect hold rect2? {}",rect.can_hold(&rect2));
+    println!("is rect hold rect3? {}",rect.can_hold(&rect3));
 }
 
 
